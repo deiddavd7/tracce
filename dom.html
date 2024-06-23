@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipolazione DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .paragrafo {
+            width: 80%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .container-bottoni {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <p class="paragrafo">Questo è il paragrafo 1.</p>
+    <p class="paragrafo">Questo è il paragrafo 2.</p>
+    <p class="paragrafo">Questo è il paragrafo 3.</p>
+
+    <div class="container-bottoni">
+        <button id="coloreCasuale">Cambia Colore</button>
+        <button id="grassetto">Grassetto</button>
+        <button id="toggleParagrafi">Mostra/Nascondi</button>
+    </div>
+
+    <script>
+        // Funzione per generare un colore casuale
+        function coloreCasuale() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        // Seleziona i paragrafi
+        const paragrafi = document.querySelectorAll('.paragrafo');
+
+        // Funzione per cambiare colore ai paragrafi
+        document.getElementById('coloreCasuale').addEventListener('click', () => {
+            paragrafi.forEach(paragrafo => {
+                paragrafo.style.color = coloreCasuale();
+            });
+        });
+
+        // Funzione per rendere il testo grassetto
+        document.getElementById('grassetto').addEventListener('click', () => {
+            paragrafi.forEach(paragrafo => {
+                paragrafo.style.fontWeight = 'bold';
+            });
+        });
+
+        // Funzione per mostrare/nascondere i paragrafi
+        document.getElementById('toggleParagrafi').addEventListener('click', () => {
+            paragrafi.forEach(paragrafo => {
+                paragrafo.style.display = paragrafo.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
